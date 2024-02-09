@@ -1,0 +1,291 @@
+# .gitignore for ASP.NET Core 6 WebAPI
+
+# Ignore files build output
+bin/
+obj/
+
+# Ignore user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio files
+.vscode/
+*.vs/
+# .gitignore for ASP.NET Core 6 WebAPI
+
+# Ignore files build output
+bin/
+obj/
+
+# Ignore user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio files
+.vscode/
+*.vs/
+
+# Ignore build artifacts
+*.dll
+*.pdb
+*.exe
+*.cache
+*.log
+*.vsix
+*.nupkg
+*.pfx
+
+# Ignore node_modules directory if using npm
+node_modules/
+
+# Ignore .NET Core Tools
+project.lock.json
+project.fragment.lock.json
+artifacts/
+build/
+[Bb]in/
+[Rr]elease/
+*/[Dd]ebug/
+
+# Ignore NuGet packages
+packages/
+
+# Ignore Roslyn cache
+*.ide/
+
+# Ignore Resharper files
+_ReSharper.*
+
+# Ignore Rider files
+.idea/
+
+# Ignore temp database directory
+*.dbmdl
+
+# Ignore Visual Studio profiler
+*.psess
+
+# Ignore Azure publish settings
+*.publishsettings
+
+# Ignore Web.config transformations
+*.transform
+
+# Ignore .NET profiling
+*.svclog
+
+# Ignore Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Ignore RIA/Silverlight projects
+Generated_Code/
+
+# Ignore GhostDoc plugin settings
+*.GhostDoc.xml
+
+# Ignore CodeRush personal settings
+.cr/personal
+
+# Ignore ReSharper and Rider cache, temp directories, and solutions
+_ReSharper*/
+*.sln.idea/
+*.sln.iml
+*.sln.ipr
+
+# Ignore Coredump files
+*.core
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore paket dependency manager files
+.paket/paket.exe
+paket-files/
+
+# Ignore NCrunch files
+*.ncrunch*
+.*crunch*.local.xml
+
+# Ignore Visual Studio Code IntelliSense cache
+.vscode/
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore yarn debug log
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore build folders for multiple languages
+node_modules/
+packages/
+
+# Ignore testing libraries
+test-results/
+
+# Ignore TypeScript compilation output
+*.js
+*.map
+
+# Ignore local db files
+*.mdf
+*.ldf
+
+# Ignore Rider settings
+.idea/
+*.sln.iml
+
+# Ignore dotnet local tools
+.tool-manifest
+.tool-settings
+
+# Ignore Heroku
+*.heroku/
+
+# Ignore Visual Studio IntelliCode
+.vscode/
+
+# Ignore Xamarin/Mono debug logs
+*.mdb
+
+# Ignore FluentAssertions
+FluentAssertions.license
+
+# Ignore API documentation files
+*.xml
+
+
+# Ignore build artifacts
+*.dll
+*.pdb
+*.exe
+*.cache
+*.log
+*.vsix
+*.nupkg
+*.pfx
+
+# Ignore node_modules directory if using npm
+node_modules/
+
+# Ignore .NET Core Tools
+project.lock.json
+project.fragment.lock.json
+artifacts/
+build/
+[Bb]in/
+[Rr]elease/
+*/[Dd]ebug/
+
+# Ignore NuGet packages
+packages/
+
+# Ignore Roslyn cache
+*.ide/
+
+# Ignore Resharper files
+_ReSharper.*
+
+# Ignore Rider files
+.idea/
+
+# Ignore temp database directory
+*.dbmdl
+
+# Ignore Visual Studio profiler
+*.psess
+
+# Ignore Azure publish settings
+*.publishsettings
+
+# Ignore Web.config transformations
+*.transform
+
+# Ignore .NET profiling
+*.svclog
+
+# Ignore Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Ignore RIA/Silverlight projects
+Generated_Code/
+
+# Ignore GhostDoc plugin settings
+*.GhostDoc.xml
+
+# Ignore CodeRush personal settings
+.cr/personal
+
+# Ignore ReSharper and Rider cache, temp directories, and solutions
+_ReSharper*/
+*.sln.idea/
+*.sln.iml
+*.sln.ipr
+
+# Ignore Coredump files
+*.core
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore paket dependency manager files
+.paket/paket.exe
+paket-files/
+
+# Ignore NCrunch files
+*.ncrunch*
+.*crunch*.local.xml
+
+# Ignore Visual Studio Code IntelliSense cache
+.vscode/
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore yarn debug log
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore build folders for multiple languages
+node_modules/
+packages/
+
+# Ignore testing libraries
+test-results/
+
+# Ignore TypeScript compilation output
+*.js
+*.map
+
+# Ignore local db files
+*.mdf
+*.ldf
+
+# Ignore Rider settings
+.idea/
+*.sln.iml
+
+# Ignore dotnet local tools
+.tool-manifest
+.tool-settings
+
+# Ignore Heroku
+*.heroku/
+
+# Ignore Visual Studio IntelliCode
+.vscode/
+
+# Ignore Xamarin/Mono debug logs
+*.mdb
+
+# Ignore FluentAssertions
+FluentAssertions.license
+
+# Ignore API documentation files
+*.xml
