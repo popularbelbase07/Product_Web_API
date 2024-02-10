@@ -30,3 +30,9 @@ C:\Users\popul\source\repos\Projects\Product_API_Version_6\obj\Debug\net6.0\refi
 C:\Users\popul\source\repos\Projects\Product_API_Version_6\obj\Debug\net6.0\Product_API_Version_6.pdb
 C:\Users\popul\source\repos\Projects\Product_API_Version_6\obj\Debug\net6.0\Product_API_Version_6.genruntimeconfig.cache
 C:\Users\popul\source\repos\Projects\Product_API_Version_6\obj\Debug\net6.0\ref\Product_API_Version_6.dll
+C:\Users\popul\source\repos\Projects\Product_API_Version_6\obj\Debug\net6.0\Product_API_Version_6.sourcelink.json
+C:\Users\popul\source\repos\Projects\Product_API_Version_6\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\popul\source\repos\Projects\Product_API_Version_6\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\popul\source\repos\Projects\Product_API_Version_6\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\popul\source\repos\Projects\Product_API_Version_6\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\popul\source\repos\Projects\Product_API_Version_6\bin\Debug\net6.0\Newtonsoft.Json.dll

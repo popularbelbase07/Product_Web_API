@@ -1,14 +1,25 @@
+using Microsoft.EntityFrameworkCore;
+using Product_API_Version_6.Database_Setting;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+//Add the database here
 
+builder.Services.AddDbContext<ShopContext>(options =>
+{
+    options.UseInMemoryDatabase("Shop");
+});
+
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -22,5 +33,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/", () => "Hello World!");
+// For the minimal API
+//app.MapGet("/", () => "Hello World!");
 app.Run();

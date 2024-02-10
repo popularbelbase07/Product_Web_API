@@ -1,0 +1,174 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Product_API_Version_6.Database_Setting;
+using Product_API_Version_6.Models;
+
+namespace Product_API_Version_6.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase
+    {
+        private readonly ShopContext _context;
+
+        //Constructor
+        public ProductsController(ShopContext context)
+        {
+            _context = context;
+            _context.Database.EnsureCreated();
+        }
+
+
+        //Get all the Products
+        [HttpGet]
+        public async Task<ActionResult> GetAllProducts()
+        {
+            return Ok(_context.Products.ToArray()); 
+        }
+
+        //Get specific Product
+        [HttpGet("{id}")]
+        public async Task<ActionResult>GetProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if(product == null) {
+
+                return NotFound();
+                    
+             }
+            return Ok(product);
+        }
+
+        //Post the data to the database
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product product)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(
+
+                "GetProduct",
+                new { id = product.Id },
+                product);
+        
+        }
+
+        //Put
+        [HttpPut]
+        public async Task<ActionResult> PutProduct(int id, Product product)
+        {
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if(!_context.Products.Any(p => p.Id == id))
+                {
+                    return NotFound();
+                }
+                else{
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Product>> DeleteProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return product;
+        }
+
+        [HttpPost]
+        [Route("DeleteAll")]
+        public async Task<ActionResult> DeleteMultiple([FromQuery] int[] ids)
+        {
+            var products = new List<Product>();  
+
+            foreach (int id in ids)
+            {
+                var product = await _context.Products.FindAsync(id);
+
+                if(product == null)
+                {
+                    return NotFound();
+                }
+                products.Add(product);  
+            }
+
+            _context.Products.RemoveRange(products);
+            await _context.SaveChangesAsync();
+
+            return Ok(products);
+
+        }
+
+        // PATCH
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> PatchProduct(int id, JsonPatchDocument<Product> patchDocument)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Apply the patch document to the product
+            patchDocument.ApplyTo(product, ModelState);
+
+
+            // Check if the patch operation resulted in valid state
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // Check if the product still exists in the database
+                if (!_context.Products.Any(p => p.Id == id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+    }
+}
