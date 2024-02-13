@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Add the database here
+//Add the database here => connecting the database and inmemory database as well
 
 builder.Services.AddDbContext<ShopContext>(options =>
 {

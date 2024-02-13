@@ -25,10 +25,10 @@ namespace Product_API_Version_6.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllProducts()
         {
-            return Ok(_context.Products.ToArray()); 
+            return Ok( await _context.Products.ToArrayAsync());   
         }
 
-        //Get specific Product
+        //Get specific Product using ID
         [HttpGet("{id}")]
         public async Task<ActionResult>GetProduct(int id)
         {
@@ -50,8 +50,8 @@ namespace Product_API_Version_6.Controllers
             {
                 return BadRequest();
             }
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+           var post =_context.Products.Add(product);
+            await post.Context.SaveChangesAsync();
 
             return CreatedAtAction(
 
@@ -129,22 +129,29 @@ namespace Product_API_Version_6.Controllers
 
         }
 
+        /*
+        
         // PATCH
         [HttpPatch("{id}")]
-        public async Task<ActionResult> PatchProduct(int id, JsonPatchDocument<Product> patchDocument)
+        public async Task<IActionResult> PatchProduct(int id, [FromBody] JsonPatchDocument<Product> patchDoc)
         {
-            var product = await _context.Products.FindAsync(id);
+            if (patchDoc == null)
+            {
+                return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
-            if (product == null)
+            var productToUpdate = await _context.Products.FindAsync(id);
+            if (productToUpdate == null)
             {
                 return NotFound();
             }
 
-            // Apply the patch document to the product
-            patchDocument.ApplyTo(product, ModelState);
+            patchDoc.ApplyTo(productToUpdate, ModelState);
 
-
-            // Check if the patch operation resulted in valid state
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -156,7 +163,6 @@ namespace Product_API_Version_6.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                // Check if the product still exists in the database
                 if (!_context.Products.Any(p => p.Id == id))
                 {
                     return NotFound();
@@ -169,6 +175,55 @@ namespace Product_API_Version_6.Controllers
 
             return NoContent();
         }
+
+
+        */
+
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product productUpdate)
+        {
+            // Implement logic to update the product with the given ID
+            // Example:
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+           
+
+            // Update product properties based on productUpdate
+            if (productUpdate.Name != null)
+            {
+                product.Name = productUpdate.Name;
+            }
+            if (productUpdate.Sku != null)
+            {
+                product.Sku = productUpdate.Sku;
+            }
+            if (productUpdate.Description != null)
+            {
+                product.Description = productUpdate.Description;
+            }
+
+            if (productUpdate?.Price != null)
+            {
+                product.Price = productUpdate.Price;
+            }
+            if (productUpdate?.IsAvailable != null)
+            {
+                product.IsAvailable= productUpdate.IsAvailable;
+            }
+
+           
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            // Return the status code and the Editted Product
+            return Ok(productUpdate);
+        }
+
 
     }
 }

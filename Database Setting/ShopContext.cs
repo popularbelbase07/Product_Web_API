@@ -5,9 +5,15 @@ namespace Product_API_Version_6.Database_Setting
 {
     public class ShopContext :DbContext
     {
+        //Relationship between the entities Properties using dbcontext inherit
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         //Constructor
-        public ShopContext(DbContextOptions<ShopContext> options) : base(options) { }
+        public ShopContext(DbContextOptions<ShopContext> options) : base(options) 
+        {
+
+        }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -20,7 +26,6 @@ namespace Product_API_Version_6.Database_Setting
             modelBuilder.Seed();    
         }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        
     }
 }
