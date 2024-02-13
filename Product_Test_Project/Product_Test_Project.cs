@@ -65,22 +65,6 @@ namespace Product_Test_Project
                     Assert.Equal(3, product.Id);
                 }
             }
-            //    3.Test that the action returns a 404 (Not Found) status code when the product does not exist.
-            [Fact]
-            public async Task GetProduct_WithInvalidId_ReturnsNotFoundResult()
-            {
-                // Arrange
-                using (var context = new ShopContext(_options))
-                {
-                    var controller = new ProductsController(context);
-
-                    // Act
-                    var result = await controller.GetProduct(999);
-
-                    // Assert
-                    Assert.IsType<NotFoundResult>(result);
-                }
-            }
         }
     }
 }

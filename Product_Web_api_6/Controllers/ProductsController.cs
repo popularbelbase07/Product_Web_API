@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Product_API_Version_6.Database_Setting;
 using Product_API_Version_6.Models;
+using Product_API_Version_6.Models.Pagination;
+using System.Linq;
 
 namespace Product_API_Version_6.Controllers
 {
@@ -19,10 +21,19 @@ namespace Product_API_Version_6.Controllers
         }
 
         //Get all the Products
+        
         [HttpGet]
-        public async Task<ActionResult> GetAllProducts()
+        public async Task<ActionResult> GetAllProducts([FromQuery] QueryParameters queryParameters)
         {
-            return Ok(await _context.Products.ToArrayAsync());
+           //using Pagination to return the data => url should be like 
+            IQueryable<Product> products_pagination = _context.Products;
+            products_pagination = products_pagination
+                .Skip(queryParameters.Size *(queryParameters.Page -1))
+                .Take(queryParameters.Size);
+            return Ok(products_pagination.ToArrayAsync());
+       
+            //General returning Method
+            //return Ok(await _context.Products.ToArrayAsync());
         }
 
         //Get specific Product using ID
