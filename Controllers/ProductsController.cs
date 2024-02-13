@@ -129,68 +129,18 @@ namespace Product_API_Version_6.Controllers
 
         }
 
-        /*
+    
         
         // PATCH
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchProduct(int id, [FromBody] JsonPatchDocument<Product> patchDoc)
-        {
-            if (patchDoc == null)
-            {
-                return BadRequest();
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            var productToUpdate = await _context.Products.FindAsync(id);
-            if (productToUpdate == null)
-            {
-                return NotFound();
-            }
-
-            patchDoc.ApplyTo(productToUpdate, ModelState);
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Products.Any(p => p.Id == id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-
-        */
-
-
         [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product productUpdate)
         {
             // Implement logic to update the product with the given ID
-            // Example:
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
-           
 
             // Update product properties based on productUpdate
             if (productUpdate.Name != null)
@@ -205,7 +155,6 @@ namespace Product_API_Version_6.Controllers
             {
                 product.Description = productUpdate.Description;
             }
-
             if (productUpdate?.Price != null)
             {
                 product.Price = productUpdate.Price;
@@ -214,8 +163,6 @@ namespace Product_API_Version_6.Controllers
             {
                 product.IsAvailable= productUpdate.IsAvailable;
             }
-
-           
 
             // Save changes to the database
             await _context.SaveChangesAsync();
