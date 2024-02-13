@@ -2,11 +2,11 @@
 using Product_API_Version_6.Models;
 
 namespace Product_API_Version_6.Database_Setting
-  
+
 {
     public static class ModelBuilderExtension
     {
-        public static void Seed ( this ModelBuilder modelBuilder)
+        public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Active Wear - Men" },
@@ -52,6 +52,5 @@ namespace Product_API_Version_6.Database_Setting
                new Product { Id = 32, CategoryId = 5, Name = "Vitamin C 1000 mg (100 tablets)", Sku = "SVC", Price = 9.99M, IsAvailable = true },
                new Product { Id = 33, CategoryId = 5, Name = "Vitamin D3 1000 IU (100 tablets)", Sku = "SVD3", Price = 12.49M, IsAvailable = true });
         }
-      
     }
 }

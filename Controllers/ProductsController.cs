@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Product_API_Version_6.Database_Setting;
 using Product_API_Version_6.Models;
@@ -20,25 +18,23 @@ namespace Product_API_Version_6.Controllers
             _context.Database.EnsureCreated();
         }
 
-
         //Get all the Products
         [HttpGet]
         public async Task<ActionResult> GetAllProducts()
         {
-            return Ok( await _context.Products.ToArrayAsync());   
+            return Ok(await _context.Products.ToArrayAsync());
         }
 
         //Get specific Product using ID
         [HttpGet("{id}")]
-        public async Task<ActionResult>GetProduct(int id)
+        public async Task<ActionResult> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
 
-            if(product == null) {
-
+            if (product == null)
+            {
                 return NotFound();
-                    
-             }
+            }
             return Ok(product);
         }
 
@@ -46,11 +42,11 @@ namespace Product_API_Version_6.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-           var post =_context.Products.Add(product);
+            var post = _context.Products.Add(product);
             await post.Context.SaveChangesAsync();
 
             return CreatedAtAction(
@@ -58,7 +54,6 @@ namespace Product_API_Version_6.Controllers
                 "GetProduct",
                 new { id = product.Id },
                 product);
-        
         }
 
         //Put
@@ -75,15 +70,15 @@ namespace Product_API_Version_6.Controllers
             try
             {
                 await _context.SaveChangesAsync();
-
             }
-            catch(DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException)
             {
-                if(!_context.Products.Any(p => p.Id == id))
+                if (!_context.Products.Any(p => p.Id == id))
                 {
                     return NotFound();
                 }
-                else{
+                else
+                {
                     throw;
                 }
             }
@@ -109,28 +104,25 @@ namespace Product_API_Version_6.Controllers
         [Route("DeleteAll")]
         public async Task<ActionResult> DeleteMultiple([FromQuery] int[] ids)
         {
-            var products = new List<Product>();  
+            var products = new List<Product>();
 
             foreach (int id in ids)
             {
                 var product = await _context.Products.FindAsync(id);
 
-                if(product == null)
+                if (product == null)
                 {
                     return NotFound();
                 }
-                products.Add(product);  
+                products.Add(product);
             }
 
             _context.Products.RemoveRange(products);
             await _context.SaveChangesAsync();
 
             return Ok(products);
-
         }
 
-    
-        
         // PATCH
         [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product productUpdate)
@@ -161,7 +153,7 @@ namespace Product_API_Version_6.Controllers
             }
             if (productUpdate?.IsAvailable != null)
             {
-                product.IsAvailable= productUpdate.IsAvailable;
+                product.IsAvailable = productUpdate.IsAvailable;
             }
 
             // Save changes to the database
@@ -170,7 +162,5 @@ namespace Product_API_Version_6.Controllers
             // Return the status code and the Editted Product
             return Ok(productUpdate);
         }
-
-
     }
 }
