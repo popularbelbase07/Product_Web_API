@@ -7,14 +7,23 @@
 	* 1. Install Microsoft.EntityFrameworkCore  => using nuget Package manager.
 	* dotnet add package Microsoft.EntityFrameworkCore.InMemory
 
-	2. ## Advance data  retrieval 
-	
 	1. Pagination and filtering 
 	2. Nuget
 	3. Enforcing HTTPS
 	4. Java Script request
 	5. Tokens
 	6. Testing => using XUnit test for controllers
+
+	2. ## Advance data retrieval 
+	
+	* Pagination 
+	* filtering 
+	* Sorting
+	* Searching
+	* Advance Searching
+	
+	3. ## Advance data  retrieval 
+	
 	
 
 
