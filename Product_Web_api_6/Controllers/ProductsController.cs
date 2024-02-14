@@ -4,6 +4,7 @@ using Product_API_Version_6.Database_Setting;
 using Product_API_Version_6.Models;
 using Product_API_Version_6.Models.Filteration;
 using Product_API_Version_6.Models.Pagination;
+using Product_API_Version_6.Models.Sorting;
 using System.Linq;
 
 namespace Product_API_Version_6.Controllers
@@ -47,8 +48,10 @@ namespace Product_API_Version_6.Controllers
             #endregion
 
             #region  SEARCHING THE PRODUCTS USING NAME AND SKU
-            // Searching the Product by their name and sku
-            if(!string.IsNullOrEmpty(queryParameters.Sku) && !string.IsNullOrWhiteSpace(queryParameters.Sku))
+
+            // Searching the Product by their name and sku -------Looking for substrings----------------- https://localhost:7268/api/Products?Sku=AWMPS
+
+            if (!string.IsNullOrEmpty(queryParameters.Sku) && !string.IsNullOrWhiteSpace(queryParameters.Sku))
             {
                 products = products.Where(
                     p => p.Sku == queryParameters.Sku);
@@ -61,6 +64,25 @@ namespace Product_API_Version_6.Controllers
                         queryParameters.Name.ToLower())
                     );    
             }
+
+            #endregion
+
+            #region   SORTING THE PRODUCT DATA
+
+            //Sorting is a method that helps to ascending and descending the order by arbiaraty parameters --------------------
+           
+            if(!string.IsNullOrEmpty(queryParameters.SortBy) &&  !string.IsNullOrWhiteSpace(queryParameters.SortBy))
+            {
+                //check the product class does has a properties is not null or not
+
+                if(typeof(Product).GetProperty(queryParameters.SortBy) != null)
+                {
+                    products = products.OrderByCustom(
+                        queryParameters.SortBy,
+                        queryParameters.SortOrder);
+                }
+            }
+
             #endregion
 
             #region PAGINATION FOR THE PRODUCT DATA
@@ -73,8 +95,8 @@ namespace Product_API_Version_6.Controllers
             //General returning Method
             //return Ok(await _context.Products.ToArrayAsync());
             #endregion
-            #endregion
 
+            #endregion
         }
 
         //Get specific Product using ID
