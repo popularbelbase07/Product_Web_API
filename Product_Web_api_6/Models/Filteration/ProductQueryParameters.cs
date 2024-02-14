@@ -6,5 +6,9 @@ namespace Product_API_Version_6.Models.Filteration
     {
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set;}
+
+        // For Searching Purpose
+        public string Sku {  get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

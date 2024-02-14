@@ -26,11 +26,15 @@ namespace Product_API_Version_6.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllProducts([FromQuery] ProductQueryParameters queryParameters)
         {
+            #region GET ALL THE PRODUCTS
+
             IQueryable<Product> products = _context.Products;
 
-            /* using filteration to return the data using minimum and maxmium value  -------------   */
-            
-            if(queryParameters.MinPrice != null)
+            #region FILTERATION OF THE PRODUCT DATA
+
+            /* using filteration to return the data using minimum and maxmium value  -------------  https://localhost:7268/api/Products?MinPrice=10&MaxPrice=30 */
+
+            if (queryParameters.MinPrice != null)
             {
                 products = products.Where(
                     p=> p.Price >= queryParameters.MinPrice.Value );
@@ -40,15 +44,37 @@ namespace Product_API_Version_6.Controllers
                 products = products.Where(
                     p => p.Price <= queryParameters.MaxPrice.Value );
             }
+            #endregion
 
+            #region  SEARCHING THE PRODUCTS USING NAME AND SKU
+            // Searching the Product by their name and sku
+            if(!string.IsNullOrEmpty(queryParameters.Sku) && !string.IsNullOrWhiteSpace(queryParameters.Sku))
+            {
+                products = products.Where(
+                    p => p.Sku == queryParameters.Sku);
+            }
+
+            if(!string.IsNullOrEmpty(queryParameters.Name) && !string.IsNullOrWhiteSpace(queryParameters.Name))
+            {
+                products = products.Where(
+                    p=> p.Name.ToLower().Contains(
+                        queryParameters.Name.ToLower())
+                    );    
+            }
+            #endregion
+
+            #region PAGINATION FOR THE PRODUCT DATA
             /* using Pagination to return the data => url should be like ------------  https://localhost:7268/api/Products?size=15&page=2          */
             products = products
                 .Skip(queryParameters.Size *(queryParameters.Page -1))
                 .Take(queryParameters.Size);
             return Ok(products.ToArrayAsync());
-       
+
             //General returning Method
             //return Ok(await _context.Products.ToArrayAsync());
+            #endregion
+            #endregion
+
         }
 
         //Get specific Product using ID
