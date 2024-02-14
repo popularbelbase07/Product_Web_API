@@ -2,10 +2,11 @@
 
  ## Advanced Web Apis with ASP.NET CORE in .NET 6
 
- 1. This Project basically use inmemory database and do some very crucial operation like CRUD.
-	
-	* 1. Install Microsoft.EntityFrameworkCore  => using nuget Package manager.
-	* dotnet add package Microsoft.EntityFrameworkCore.InMemory
+ ## Installation Packages
+		1. Install Microsoft.EntityFrameworkCore  => using nuget Package manager.			
+		2. dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+ 1. This Project basically use inmemory database and do some very crucial operation like CRUD
 
 	1. Pagination and filtering 
 	2. Nuget
