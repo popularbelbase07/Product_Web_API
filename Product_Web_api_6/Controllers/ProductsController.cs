@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Product_API_Version_6.Database_Setting;
 using Product_API_Version_6.Models;
+using Product_API_Version_6.Models.Filteration;
 using Product_API_Version_6.Models.Pagination;
 using System.Linq;
 
@@ -23,14 +24,28 @@ namespace Product_API_Version_6.Controllers
         //Get all the Products
         
         [HttpGet]
-        public async Task<ActionResult> GetAllProducts([FromQuery] QueryParameters queryParameters)
+        public async Task<ActionResult> GetAllProducts([FromQuery] ProductQueryParameters queryParameters)
         {
-           //using Pagination to return the data => url should be like 
-            IQueryable<Product> products_pagination = _context.Products;
-            products_pagination = products_pagination
+            IQueryable<Product> products = _context.Products;
+
+            /* using filteration to return the data using minimum and maxmium value  -------------   */
+            
+            if(queryParameters.MinPrice != null)
+            {
+                products = products.Where(
+                    p=> p.Price >= queryParameters.MinPrice.Value );
+            }
+            if(queryParameters.MaxPrice != null)
+            {
+                products = products.Where(
+                    p => p.Price <= queryParameters.MaxPrice.Value );
+            }
+
+            /* using Pagination to return the data => url should be like ------------  https://localhost:7268/api/Products?size=15&page=2          */
+            products = products
                 .Skip(queryParameters.Size *(queryParameters.Page -1))
                 .Take(queryParameters.Size);
-            return Ok(products_pagination.ToArrayAsync());
+            return Ok(products.ToArrayAsync());
        
             //General returning Method
             //return Ok(await _context.Products.ToArrayAsync());
