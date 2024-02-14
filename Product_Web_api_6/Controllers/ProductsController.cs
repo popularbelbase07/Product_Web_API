@@ -23,7 +23,7 @@ namespace Product_API_Version_6.Controllers
         }
 
         //Get all the Products
-        
+
         [HttpGet]
         public async Task<ActionResult> GetAllProducts([FromQuery] ProductQueryParameters queryParameters)
         {
@@ -38,16 +38,28 @@ namespace Product_API_Version_6.Controllers
             if (queryParameters.MinPrice != null)
             {
                 products = products.Where(
-                    p=> p.Price >= queryParameters.MinPrice.Value );
+                    p => p.Price >= queryParameters.MinPrice.Value);
             }
-            if(queryParameters.MaxPrice != null)
+            if (queryParameters.MaxPrice != null)
             {
                 products = products.Where(
-                    p => p.Price <= queryParameters.MaxPrice.Value );
+                    p => p.Price <= queryParameters.MaxPrice.Value);
             }
             #endregion
 
             #region  SEARCHING THE PRODUCTS USING NAME AND SKU
+            //Advance search mechanism challange => specific search
+            if (!string.IsNullOrEmpty(queryParameters.SearchTerm) && !string.IsNullOrWhiteSpace(queryParameters.SearchTerm))
+            {
+                products = products.Where(
+                    p => p.Sku.ToLower().Contains(queryParameters.SearchTerm.ToLower()) 
+                    ||
+                    p.Name.ToLower().Contains(queryParameters.SearchTerm.ToLower())
+                    );
+                  
+
+            } 
+
 
             // Searching the Product by their name and sku -------Looking for substrings----------------- https://localhost:7268/api/Products?Sku=AWMPS
 
@@ -69,9 +81,9 @@ namespace Product_API_Version_6.Controllers
 
             #region   SORTING THE PRODUCT DATA
 
-            //Sorting is a method that helps to ascending and descending the order by arbiaraty parameters --------------------
-           
-            if(!string.IsNullOrEmpty(queryParameters.SortBy) &&  !string.IsNullOrWhiteSpace(queryParameters.SortBy))
+            //Sorting is a method that helps to ascending and descending the order by arbiaraty parameters -------------------- https://localhost:7268/api/Products?SortBy=Price&SortOrder=desc
+
+            if (!string.IsNullOrEmpty(queryParameters.SortBy) &&  !string.IsNullOrWhiteSpace(queryParameters.SortBy))
             {
                 //check the product class does has a properties is not null or not
 
