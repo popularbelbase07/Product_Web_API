@@ -6,11 +6,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
+
+
+// *********API Versioning*********************************
+builder.Services.AddApiVersioning(options =>
+{
+    //Http response also contains the version number(nice to know which API is actually used
+    options.ReportApiVersions = true;
+    //Custom API version
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    //If no other version is called default version is used.
+    options.AssumeDefaultVersionWhenUnspecified = true;
+});
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Add the database here => connecting the database and inmemory database as well
+//*************Add the database here => connecting the database and inmemory database as well*****************
 
 builder.Services.AddDbContext<ShopContext>(options =>
 {
@@ -31,9 +45,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// For the minimal API
-//app.MapGet("/", () => "Hello World!");
-
-// For the minimal API
+// **********************For the minimal API**********************
 //app.MapGet("/", () => "Hello World!");
 app.Run();
