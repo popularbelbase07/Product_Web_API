@@ -9,10 +9,15 @@ using System.Linq;
 
 namespace Product_API_Version_6.Controllers
 {
-    //adding API version
+    //adding URL-API version
     [ApiVersion("1.0")]
-    [Route("v{v:apiVersion}/products")]
-   // [Route("api/[controller]")]
+    // [Route("v{v:apiVersion}/products")]
+
+    //default route
+    // [Route("api/[controller]")]
+
+    //HTTP Header API versioning
+    [Route("products")]
     [ApiController]
     public class ProductsV1Controller : ControllerBase
     {
@@ -256,8 +261,13 @@ namespace Product_API_Version_6.Controllers
     //controller version : 2
     //adding API version
     [ApiVersion("2.0")]
-    [Route("v{v:apiVersion}/products")]
+    // [Route("v{v:apiVersion}/products")]
+
+    //default route
     // [Route("api/[controller]")]
+
+    //HTTP Header API versioning
+    [Route("products")]
     [ApiController]
     public class ProductsV2Controller : ControllerBase
     {

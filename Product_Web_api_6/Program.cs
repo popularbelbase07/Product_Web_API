@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Product_API_Version_6.Database_Setting;
 
@@ -17,6 +18,9 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     //If no other version is called default version is used.
     options.AssumeDefaultVersionWhenUnspecified = true;
+
+    //HTTP Header Versioning
+    options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
 });
 
 
