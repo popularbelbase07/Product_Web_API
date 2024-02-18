@@ -29,6 +29,8 @@
 			* => URL(/v1.0/products = Seperates API versions, but gives up the one URI principle) => REST ARCHICTURE
 			* => QueryString(/products?api-version=1.0 = Might mix with other URL parameters.)
 		1. Nuget Package : Microsoft.AspNetCore.Mvc.Versioning
+		2. Fixing the swagger API Documentation use Nuget package
+			* => Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 	
 	
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u55klL15MCH6Avgf5EoqlJyUdlon10ARAxRn9+RD96H8n7M9m7F2Vf7G4B4GQ9HBKbiTUcLHeV2IeUQpAhzsHQ==",
+  "dgSpecHash": "D39wylD+4R8Xn1JwcWT4I/Y81GoQ/Grwg+EzeiGjixDpEs5SI1hSxC2I1MWAl91Oe+eQk5YkQUcUcNP59/7aUA==",
   "success": true,
   "projectFilePath": "C:\\Users\\popul\\source\\repos\\Projects\\PRODUCT_WEB_API\\Product_Test_Project\\Product_Test_Project.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\popul\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\popul\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\8.0.1\\microsoft.aspnetcore.jsonpatch.8.0.1.nupkg.sha512",
     "C:\\Users\\popul\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.1.0\\microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512",
+    "C:\\Users\\popul\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning.apiexplorer\\5.1.0\\microsoft.aspnetcore.mvc.versioning.apiexplorer.5.1.0.nupkg.sha512",
     "C:\\Users\\popul\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\popul\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\popul\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
