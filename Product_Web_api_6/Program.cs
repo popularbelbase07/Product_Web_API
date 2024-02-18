@@ -20,7 +20,12 @@ builder.Services.AddApiVersioning(options =>
     options.AssumeDefaultVersionWhenUnspecified = true;
 
     //HTTP Header Versioning
-    options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+    //options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+
+    //For QueryString API Versioning
+    options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
+    // => (- HTTP Header Versioning)   =>just remove the HTTP Header versioning and controller part leave as it is.
+    //https://localhost:7268/products?api-version=1.0
 });
 
 
