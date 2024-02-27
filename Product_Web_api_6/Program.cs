@@ -58,6 +58,7 @@ if (app.Environment.IsDevelopment())
    
 }
 
+//When the webserver recieve the request from the client that redirect to the HTTPs request.
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

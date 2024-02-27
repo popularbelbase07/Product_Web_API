@@ -31,6 +31,8 @@
 		1. Nuget Package : Microsoft.AspNetCore.Mvc.Versioning
 		2. Fixing the swagger API Documentation use Nuget package
 			* => Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
+4. Securing APIS
+1. Enforcing HTTPS
 	
 	
 
