@@ -32,7 +32,13 @@
 		2. Fixing the swagger API Documentation use Nuget package
 			* => Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 4. Securing APIS
-1. Enforcing HTTPS
+	1. Enforcing HTTPS 
+			=> Using Middleware #UseHttpsRedirection() == that adds Https in web Api (Built_IN)_)
+			=> using Middleware #UseHsts() == HTTP strict transport security to instruct the client to use HTTPD from now on.(USE ON PRODUCTION NOT IN DEVELOPMENT)
+ 
+	2. Consuming the API with Javascript 
+			=> Create a Asp.net core web app project(Razor Page)
+			=> 
 	
 	
 

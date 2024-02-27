@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<!--
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+-->
+
+<!--using Java script syntaxs to fetching the Product list -->
+<ul id="products-list"></ul>
+
+@section Scripts {
+
+    <script>
+
+        let url = "https://localhost:7268/products";
+        let productslist = document.getElementById("products-list");
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => showProducts(data))
+            .catch(ex => {
+                alert("Error !")
+                console.error(ex);
+            })
+
+
+            //helping function for the showProducts()
+        function showProducts(products) {
+            products.forEach(product => {
+                let li = document.createElement("li");
+                let text = ` ${product.name}  (\$${product.price})`;
+                li.appendChild(
+                    document.createTextNode(text)
+                );
+                productsList.appendChild(li);
+
+
+            });
+        }
+
+    </script>
+}

@@ -57,6 +57,13 @@ if (app.Environment.IsDevelopment())
 
    
 }
+/*
+//HSTS middleware
+else
+{
+    app.UseHsts();
+}
+*/
 
 //When the webserver recieve the request from the client that redirect to the HTTPs request.
 app.UseHttpsRedirection();
